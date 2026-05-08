@@ -10,37 +10,58 @@ class BackgroundSwitcher {
   }
 
   async load() {
-    const total = Math.max(this.images.length, 1);
+    const total = this.images.length;
     let loaded = 0;
 
-    const promises = this.images.map((item, index) => {
+    const loadOne = (index) => {
       return new Promise((resolve) => {
         const img = new Image();
         img.onload = () => {
           this.loadedImages[index] = img;
           loaded++;
-          if (this.onProgress) this.onProgress(Math.min(loaded, total), total);
           resolve();
         };
         img.onerror = () => {
-          this.loadImageWithFetch(item.fallback).then((fallbackImg) => {
+          this.loadImageWithFetch(this.images[index].fallback).then((fallbackImg) => {
             if (fallbackImg) {
               this.loadedImages[index] = fallbackImg;
             }
             loaded++;
-            if (this.onProgress) this.onProgress(Math.min(loaded, total), total);
             resolve();
           });
         };
-        img.src = item.src;
+        img.src = this.images[index].src;
       });
-    });
+    };
 
-    await Promise.all(promises);
+    const priorityCount = Math.min(3, total);
+    const priorityIndices = [];
+    const remainingIndices = [];
+    for (let i = 0; i < total; i++) {
+      if (i < priorityCount) {
+        priorityIndices.push(i);
+      } else {
+        remainingIndices.push(i);
+      }
+    }
+
+    const priorityPromises = priorityIndices.map((i) =>
+      loadOne(i).then(() => {
+        if (this.onProgress) this.onProgress(loaded, priorityCount);
+      })
+    );
+
+    if (this.onProgress) this.onProgress(0, priorityCount);
+    await Promise.all(priorityPromises);
+
     if (this.loadedImages.filter(Boolean).length > 0) {
       this.showRandom();
     }
     if (this.onReady) this.onReady();
+
+    remainingIndices.forEach((i) => {
+      loadOne(i);
+    });
   }
 
   loadImageWithFetch(url) {
