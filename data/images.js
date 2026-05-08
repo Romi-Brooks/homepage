@@ -6,7 +6,7 @@ const backgroundImages = [
     tone: 'light'
   },
   {
-    src: 'images/background/2.png',
+    src: 'images/background/2.jpg',
     fallback: 'https://picsum.photos/id/1018/1920/1080',
     title: 'Mountain Lake',
     tone: 'light'
