@@ -1,3 +1,3 @@
 const turnstileConfig = {
-  siteKey: '',
+  siteKey: '0x4AAAAAADLQWAbExST-dXew',
 };
