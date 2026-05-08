@@ -17,21 +17,6 @@ function corsHeaders() {
   };
 }
 
-async function verifyTurnstile(token, secret) {
-  if (!token || !secret) return false;
-  try {
-    const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ secret, response: token }),
-    });
-    const data = await res.json();
-    return data.success === true;
-  } catch {
-    return false;
-  }
-}
-
 export async function onRequest(context) {
   const { request, env } = context;
   const db = env.GB;
@@ -61,17 +46,10 @@ export async function onRequest(context) {
   if (request.method === 'POST') {
     try {
       const body = await request.json();
-      const { name, text, date, token } = body;
+      const { name, text, date } = body;
 
       if (!text || !text.trim()) {
         return new Response(JSON.stringify({ error: 'text is required' }), { status: 400, headers });
-      }
-
-      if (env.TURNSTILE_SECRET) {
-        const valid = await verifyTurnstile(token, env.TURNSTILE_SECRET);
-        if (!valid) {
-          return new Response(JSON.stringify({ error: 'verification_failed' }), { status: 403, headers });
-        }
       }
 
       await db.prepare(

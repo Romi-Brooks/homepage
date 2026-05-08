@@ -469,7 +469,6 @@ class PortfolioApp {
     const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     const API = '/api/guestbook';
     const messages = [];
-    let turnstileWidgetId = null;
 
     const renderMessages = () => {
       container.innerHTML = '';
@@ -528,20 +527,6 @@ class PortfolioApp {
 
     loadMessages();
 
-    if (!isLocal && typeof turnstile !== 'undefined' && turnstileConfig.siteKey) {
-      const widgetEl = document.getElementById('turnstileWidget');
-      if (widgetEl) {
-        try {
-          turnstileWidgetId = turnstile.render(widgetEl, {
-            sitekey: turnstileConfig.siteKey,
-            theme: document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light',
-          });
-        } catch (e) {
-          turnstileWidgetId = null;
-        }
-      }
-    }
-
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const nameInput = form.querySelector('[name="name"]');
@@ -556,11 +541,6 @@ class PortfolioApp {
         text,
         date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }),
       };
-
-      if (turnstileWidgetId !== null) {
-        msg.token = turnstile.getResponse(turnstileWidgetId);
-        turnstile.reset(turnstileWidgetId);
-      }
 
       try {
         const res = await fetch(API, {
