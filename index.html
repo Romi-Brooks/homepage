@@ -6,7 +6,7 @@
   <meta name="description" content="Liam Chen - Creative Developer & Designer. Crafting digital experiences where art meets engineering.">
   <meta name="theme-color" content="#121212">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌌</text></svg>">
-  <title>Romi Brooks | Here with ❤</title>
+  <title>Romi Brooks | Here with Luv ❤</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,7 @@
 </head>
 <body>
   <div class="loading-screen" id="loadingScreen">
-    <div class="loading-screen__logo">LIAM CHEN</div>
+    <div class="loading-screen__logo">Romi Brooks</div>
     <div class="loading-screen__bar">
       <div class="loading-screen__progress" id="loadingProgress"></div>
     </div>
@@ -31,19 +31,22 @@
 
   <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="navbar__inner">
-      <a href="#" class="navbar__logo">LC</a>
+      <a href="#" class="navbar__logo">RB</a>
       <ul class="navbar__links" role="menubar">
-        <li role="none"><a href="#about" class="navbar__link" role="menuitem">About</a></li>
-        <li role="none"><a href="#projects" class="navbar__link" role="menuitem">Projects</a></li>
-        <li role="none"><a href="#wisdom" class="navbar__link" role="menuitem">Wisdom</a></li>
-        <li role="none"><a href="#guestbook" class="navbar__link" role="menuitem">Guestbook</a></li>
-        <li role="none"><a href="#contact" class="navbar__link" role="menuitem">Contact</a></li>
+        <li role="none"><a href="#about" class="navbar__link" role="menuitem" data-i18n="nav.about">About</a></li>
+        <li role="none"><a href="#projects" class="navbar__link" role="menuitem" data-i18n="nav.projects">Projects</a></li>
+        <li role="none"><a href="#wisdom" class="navbar__link" role="menuitem" data-i18n="nav.wisdom">Wisdom</a></li>
+        <li role="none"><a href="#guestbook" class="navbar__link" role="menuitem" data-i18n="nav.guestbook">Guestbook</a></li>
+        <li role="none"><a href="#contact" class="navbar__link" role="menuitem" data-i18n="nav.contact">Contact</a></li>
         <li role="none"><a href="https://github.com/Romi-Brooks" target="_blank" rel="noopener noreferrer" class="navbar__link" role="menuitem"><i class="fab fa-github"></i></a></li>
         <li role="none"><a href="https://blog.heyromi.icu" target="_blank" rel="noopener noreferrer" class="navbar__link" role="menuitem"><i class="fas fa-pen-nib"></i></a></li>
         <li role="none">
           <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
             <i class="fas fa-moon"></i>
           </button>
+        </li>
+        <li role="none">
+          <button class="lang-toggle" id="langToggle" aria-label="Switch language" title="Switch language">EN</button>
         </li>
       </ul>
       <button class="mobile-menu-btn" aria-label="Toggle menu">
@@ -69,16 +72,16 @@
       </p>
       <div class="hero__actions fade-in">
         <a href="#projects" class="btn-primary">
-          <i class="fas fa-rocket"></i> View Projects
+          <i class="fas fa-rocket"></i> <span data-i18n="hero.viewProjects">View Projects</span>
         </a>
         <a href="#about" class="btn-outline">
-          <i class="fas fa-user"></i> About Me
+          <i class="fas fa-user"></i> <span data-i18n="hero.aboutMe">About Me</span>
         </a>
       </div>
     </div>
 
     <div class="hero__scroll-indicator" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
-      <span>Scroll Down</span>
+      <span data-i18n="hero.scrollDown">Scroll Down</span>
       <svg width="20" height="28" viewBox="0 0 20 28" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="1" y="1" width="18" height="26" rx="9" stroke="currentColor" stroke-width="2"/>
         <circle cx="10" cy="10" r="2" fill="currentColor"/>
@@ -90,7 +93,7 @@
   <main>
     <section class="section-padding" id="about" aria-label="About Me">
       <div class="container-main">
-        <h2 class="section-title fade-in">About Me</h2>
+        <h2 class="section-title fade-in" data-i18n="about.title">About Me</h2>
 
         <div class="grid md:grid-cols-5 gap-12 items-start">
           <div class="md:col-span-2 flex flex-col items-center md:items-start">
@@ -104,15 +107,15 @@
             <p class="section-subtitle" style="text-align:left;margin:0 0 40px;font-style:italic">"What do you want to be, It's what do you do, Not what you think."</p>
             <div id="bioContainer"></div>
 
-            <div class="mb-8">
-              <h3 class="text-lg font-semibold mb-4 fade-in" style="color: var(--text-primary)">Skills & Technologies</h3>
+            <div class="mt-10 mb-8">
+              <h3 class="text-lg font-semibold mb-4 fade-in" style="color: var(--text-primary)" data-i18n="about.skills">Skills & Technologies</h3>
               <div class="flex flex-wrap gap-3" id="skillTags"></div>
             </div>
           </div>
         </div>
 
         <div class="mt-16">
-          <h3 class="text-xl font-semibold text-center mb-10" style="color: var(--text-primary)">Experience & Education</h3>
+          <h3 class="text-xl font-semibold text-center mb-10" style="color: var(--text-primary)" data-i18n="about.experience">Experience & Education</h3>
           <div class="max-w-2xl mx-auto">
             <div class="timeline" id="timeline"></div>
           </div>
@@ -122,33 +125,33 @@
 
     <section class="section-padding" id="projects" aria-label="Projects" style="background: var(--bg-secondary)">
       <div class="container-main">
-        <h2 class="section-title fade-in">Featured Projects</h2>
-        <p class="section-subtitle fade-in">Selected works that showcase my passion for building exceptional digital experiences.</p>
+        <h2 class="section-title fade-in" data-i18n="projects.title">Featured Projects</h2>
+        <p class="section-subtitle fade-in" data-i18n="projects.subtitle">Selected works that showcase my passion for building exceptional digital experiences.</p>
 
         <div class="grid md:grid-cols-2 gap-6 mb-12" id="featuredProjects"></div>
 
         <div class="text-center mb-12 fade-in">
-          <h3 class="text-xl font-semibold mb-2" style="color: var(--text-primary)">More Projects</h3>
-          <p style="color: var(--text-secondary)">Additional works and experiments</p>
+          <h3 class="text-xl font-semibold mb-2" style="color: var(--text-primary)" data-i18n="projects.moreTitle">More Projects</h3>
+          <p style="color: var(--text-secondary)" data-i18n="projects.moreSubtitle">Additional works and experiments</p>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" id="otherProjects"></div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center" id="otherProjects"></div>
       </div>
     </section>
 
     <section class="section-padding" id="wisdom" aria-label="Wisdom Universe">
       <div class="container-main">
-        <h2 class="section-title fade-in">Wisdom Universe</h2>
-        <p class="section-subtitle fade-in">Each star holds a piece of wisdom. Click to discover. Contribute your own.</p>
+        <h2 class="section-title fade-in" data-i18n="wisdom.title">Wisdom Universe</h2>
+        <p class="section-subtitle fade-in" data-i18n="wisdom.subtitle">Each star holds a piece of wisdom. Click to discover. Contribute your own.</p>
 
         <div class="wisdom-universe" id="wisdomUniverse">
           <canvas class="wisdom-universe__canvas"></canvas>
 
           <div class="wisdom-universe__card">
             <p class="wisdom-universe__card-text"></p>
-            <p class="wisdom-universe__card-author mb-6">— Liam's Wisdom</p>
+            <p class="wisdom-universe__card-author mb-6">— Romi's Wisdom</p>
             <button class="btn-close-wisdom" style="padding: 8px 24px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: white; cursor: pointer; font-size: 0.85rem; transition: all 0.2s ease-in-out" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
-              <i class="fas fa-times mr-1"></i> Close
+              <i class="fas fa-times mr-1"></i> <span data-i18n="wisdom.close"></span>Close</span>
             </button>
           </div>
 
@@ -157,7 +160,7 @@
               <i class="fas fa-dice"></i> Random Wisdom
             </button>
             <div class="flex gap-3 w-full">
-              <input type="text" class="wisdom-input flex-1" placeholder="Share your wisdom..." maxlength="200">
+              <input type="text" class="wisdom-input flex-1" data-i18n="wisdom.placeholder" data-i18n-placeholder placeholder="Share your wisdom..." maxlength="200">
               <button class="wisdom-submit-btn" style="padding: 14px 20px; background: rgba(22, 93, 255, 0.3); border: 1px solid rgba(22, 93, 255, 0.5); border-radius: 12px; color: white; cursor: pointer; transition: all 0.2s ease-in-out" onmouseover="this.style.background='rgba(22,93,255,0.5)'" onmouseout="this.style.background='rgba(22,93,255,0.3)'">
                 <i class="fas fa-paper-plane"></i>
               </button>
@@ -169,24 +172,24 @@
 
     <section class="section-padding" id="guestbook" aria-label="Guestbook" style="background: var(--bg-secondary)">
       <div class="container-main">
-        <h2 class="section-title fade-in">Guestbook</h2>
-        <p class="section-subtitle fade-in">Leave a footprint. Share your thoughts, feedback, or just say hello.</p>
+        <h2 class="section-title fade-in" data-i18n="guestbook.title">Guestbook</h2>
+        <p class="section-subtitle fade-in" data-i18n="guestbook.subtitle">Leave a footprint. Share your thoughts, feedback, or just say hello.</p>
 
         <div class="max-w-2xl mx-auto">
           <form id="guestbookForm" class="glass-card p-6 mb-8 fade-in">
             <div class="grid sm:grid-cols-2 gap-4 mb-4">
               <div>
-                <label for="guestName" class="block text-sm font-medium mb-2" style="color: var(--text-secondary)">Name</label>
-                <input type="text" id="guestName" name="name" placeholder="Your name (optional)" class="w-full px-4 py-3 rounded-lg border" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary); outline: none" onfocus="this.style.borderColor='#165DFF'" onblur="this.style.borderColor=''">
+                <label for="guestName" class="block text-sm font-medium mb-2" style="color: var(--text-secondary)" data-i18n="guestbook.name">Name</label>
+                <input type="text" id="guestName" name="name" data-i18n="guestbook.namePlaceholder" data-i18n-placeholder placeholder="Your name (optional)" class="w-full px-4 py-3 rounded-lg border" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary); outline: none" onfocus="this.style.borderColor='#165DFF'" onblur="this.style.borderColor=''">
               </div>
             </div>
             <div class="mb-4">
-              <label for="guestMessage" class="block text-sm font-medium mb-2" style="color: var(--text-secondary)">Message</label>
-              <textarea id="guestMessage" name="message" rows="3" placeholder="Write your message..." required class="w-full px-4 py-3 rounded-lg border" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary); outline: none; resize: vertical" onfocus="this.style.borderColor='#165DFF'" onblur="this.style.borderColor=''"></textarea>
+              <label for="guestMessage" class="block text-sm font-medium mb-2" style="color: var(--text-secondary)" data-i18n="guestbook.message">Message</label>
+              <textarea id="guestMessage" name="message" rows="3" data-i18n="guestbook.messagePlaceholder" data-i18n-placeholder placeholder="Write your message..." required class="w-full px-4 py-3 rounded-lg border" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary); outline: none; resize: vertical" onfocus="this.style.borderColor='#165DFF'" onblur="this.style.borderColor=''"></textarea>
             </div>
             <div id="turnstileWidget" class="mb-4"></div>
             <button type="submit" class="btn-primary">
-              <i class="fas fa-pen"></i> Sign Guestbook
+              <i class="fas fa-pen"></i> <span data-i18n="guestbook.sign">Sign Guestbook</span>
             </button>
           </form>
 
@@ -198,13 +201,13 @@
     <footer class="footer" id="contact">
       <div class="container-main">
         <div class="flex flex-col items-center text-center">
-          <h3 class="text-2xl font-bold mb-2 gradient-text" id="footerName">Liam Chen</h3>
-          <p class="mb-6" style="color: var(--text-secondary)">Creative Developer & Designer</p>
+          <h3 class="text-2xl font-bold mb-2 gradient-text" id="footerName">Romi Brooks</h3>
+          <p class="mb-6" style="color: var(--text-secondary)" data-i18n="footer.motto">Wide as the world may be, keep loving yourself with all your heart.</p>
 
           <div class="flex flex-wrap gap-4 mb-8" id="socialLinks"></div>
 
           <div class="flex flex-col items-center gap-2 text-sm" style="color: var(--text-tertiary)">
-            <p>&copy; <span id="currentYear">2026</span> <span id="footerName2">Liam Chen</span>. All rights reserved.</p>
+            <p>&copy; <span id="currentYear">2026</span> <span id="footerName2">Romi Brooks</span>. All rights reserved.</p>
             <p id="lastUpdated"></p>
           </div>
         </div>
@@ -216,28 +219,36 @@
     <i class="fas fa-arrow-up"></i>
   </button>
 
-  <div class="music-player" id="musicPlayer">
-    <button class="music-player__btn" aria-label="Toggle player">
-      <i class="fas fa-music"></i>
-    </button>
-    <div class="music-player__info">
-      <div class="music-player__title">Midnight Serenity</div>
-    </div>
-    <div class="music-player__controls">
-      <button class="music-player__toggle music-player__toggle--play" aria-label="Play/Pause">
-        <i class="fas fa-play"></i>
+  <div class="music-player music-player--collapsed" id="musicPlayer">
+    <div class="music-player__left">
+      <button class="music-player__btn" aria-label="Toggle player">
+        <i class="fas fa-music"></i>
       </button>
-      <button class="music-player__toggle music-player__toggle--next" aria-label="Next track">
+      <button class="music-player__action-btn music-player__toggle--next" aria-label="Next track">
         <i class="fas fa-forward"></i>
       </button>
-      <input type="range" class="music-player__volume" min="0" max="100" value="50" aria-label="Volume">
+      <button class="music-player__action-btn music-player__toggle--playlist" aria-label="Playlist">
+        <i class="fas fa-list"></i>
+      </button>
+    </div>
+    <div class="music-player__right">
+      <div class="music-player__playlist" id="musicPlaylist"></div>
+      <div class="music-player__iframe-wrap" id="neteaseIframeWrap">
+        <iframe id="neteaseIframe"
+          src="about:blank"
+          frameborder="no" border="0" marginwidth="0" marginheight="0"
+          width="100%" height="90">
+        </iframe>
+      </div>
     </div>
   </div>
 
   <script src="data/portfolio.js"></script>
+  <script src="data/portfolio-zh.js"></script>
   <script src="data/images.js"></script>
   <script src="data/turnstile.js"></script>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+  <script src="js/i18n.js"></script>
   <script src="js/particles.js"></script>
   <script src="js/wisdom-universe.js"></script>
   <script src="js/music-player.js"></script>

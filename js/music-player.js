@@ -2,39 +2,31 @@ class MusicPlayer {
   constructor(container, playlist) {
     this.container = container;
     this.playlist = playlist;
-    this.audio = new Audio();
     this.currentTrack = 0;
-    this.isPlaying = false;
-    this.isCollapsed = false;
+    this.isCollapsed = container.classList.contains('music-player--collapsed');
+    this.playlistOpen = false;
 
     this.elements = {
       btn: container.querySelector('.music-player__btn'),
-      title: container.querySelector('.music-player__title'),
-      playBtn: container.querySelector('.music-player__toggle--play'),
       nextBtn: container.querySelector('.music-player__toggle--next'),
-      volumeSlider: container.querySelector('.music-player__volume'),
+      playlistBtn: container.querySelector('.music-player__toggle--playlist'),
+      iframe: container.querySelector('#neteaseIframe'),
+      playlistEl: container.querySelector('#musicPlaylist'),
     };
 
-    this.init();
+    this.renderPlaylist();
     this.bindEvents();
-  }
-
-  init() {
-    this.elements.title.textContent = this.playlist[0].title;
-    this.audio.volume = 0.5;
-    this.elements.volumeSlider.value = 50;
-    this.audio.addEventListener('ended', () => this.next());
   }
 
   bindEvents() {
     this.elements.btn.addEventListener('click', () => {
       this.isCollapsed = !this.isCollapsed;
       this.container.classList.toggle('music-player--collapsed');
-    });
-
-    this.elements.playBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      this.togglePlay();
+      if (!this.isCollapsed) {
+        if (this.elements.iframe.src === 'about:blank' || this.elements.iframe.src === '') {
+          this.loadTrack(this.currentTrack, false);
+        }
+      }
     });
 
     this.elements.nextBtn.addEventListener('click', (e) => {
@@ -42,40 +34,48 @@ class MusicPlayer {
       this.next();
     });
 
-    this.elements.volumeSlider.addEventListener('input', (e) => {
-      this.audio.volume = e.target.value / 100;
+    this.elements.playlistBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.playlistOpen = !this.playlistOpen;
+      this.elements.playlistEl.classList.toggle('open');
     });
   }
 
-  togglePlay() {
-    if (this.isPlaying) {
-      this.audio.pause();
-      this.elements.playBtn.innerHTML = '<i class="fas fa-play"></i>';
-    } else {
-      if (!this.audio.src) {
-        this.audio.src = this.playlist[0].url;
-      }
-      this.audio.play().catch(() => {});
-      this.elements.playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-    }
-    this.isPlaying = !this.isPlaying;
+  loadTrack(index, autoPlay = true) {
+    const track = this.playlist[index];
+    if (!track || !track.neteaseId) return;
+    this.currentTrack = index;
+    this.elements.iframe.src = `https://music.163.com/outchain/player?type=2&id=${track.neteaseId}&auto=${autoPlay ? 1 : 0}&height=66`;
+    this.elements.playlistEl.querySelectorAll('.music-player__playlist-item').forEach((item) => {
+      item.classList.toggle('active', +item.dataset.index === index);
+    });
+    this.playlistOpen = false;
+    this.elements.playlistEl.classList.remove('open');
   }
 
   next() {
     this.currentTrack = (this.currentTrack + 1) % this.playlist.length;
-    this.audio.src = this.playlist[this.currentTrack].url;
-    this.elements.title.textContent = this.playlist[this.currentTrack].title;
-    if (this.isPlaying) {
-      this.audio.play().catch(() => {});
-    }
+    this.loadTrack(this.currentTrack, true);
   }
 
-  prev() {
-    this.currentTrack = (this.currentTrack - 1 + this.playlist.length) % this.playlist.length;
-    this.audio.src = this.playlist[this.currentTrack].url;
-    this.elements.title.textContent = this.playlist[this.currentTrack].title;
-    if (this.isPlaying) {
-      this.audio.play().catch(() => {});
-    }
+  renderPlaylist() {
+    this.elements.playlistEl.innerHTML = this.playlist.map((track, i) => `
+      <div class="music-player__playlist-item ${i === this.currentTrack ? 'active' : ''}" data-index="${i}">
+        <span class="music-player__playlist-num">${String(i + 1).padStart(2, '0')}</span>
+        <span class="music-player__playlist-name">${track.title}</span>
+        <span class="music-player__playlist-status">${track.neteaseId ? '<i class="fas fa-music"></i>' : '<i class="fas fa-ban"></i>'}</span>
+      </div>
+    `).join('');
+
+    this.elements.playlistEl.querySelectorAll('.music-player__playlist-item').forEach((item) => {
+      item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const index = +item.dataset.index;
+        const track = this.playlist[index];
+        if (track && track.neteaseId) {
+          this.loadTrack(index, true);
+        }
+      });
+    });
   }
 }

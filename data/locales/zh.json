@@ -1,0 +1,45 @@
+{
+  "nav.about": "关于",
+  "nav.projects": "项目",
+  "nav.wisdom": "智慧宇宙",
+  "nav.guestbook": "留言板",
+  "nav.contact": "联系",
+
+  "hero.greeting": "你好，我是",
+  "hero.scrollDown": "向下滚动",
+  "hero.viewProjects": "查看项目",
+  "hero.aboutMe": "关于我",
+
+  "about.title": "关于我",
+  "about.skills": "技能与技术",
+  "about.experience": "经历与教育",
+
+  "projects.title": "精选项目",
+  "projects.subtitle": "精选作品，一些潜下心来打造的 “小玩具” 项目。",
+  "projects.moreTitle": "更多项目",
+  "projects.moreSubtitle": "其他作品与实验",
+
+  "wisdom.title": "智慧宇宙",
+  "wisdom.subtitle": "每颗星星都藏着一句智慧。点击发现，你也可以贡献。",
+  "wisdom.randomBtn": "随机智慧",
+  "wisdom.placeholder": "分享你的智慧...",
+  "wisdom.submit": "提交",
+  "wisdom.added": "已添加！",
+  "wisdom.close": "关闭",
+
+  "guestbook.title": "留言板",
+  "guestbook.subtitle": "留下你的足迹。分享想法、反馈，或只是打个招呼。",
+  "guestbook.name": "姓名",
+  "guestbook.namePlaceholder": "你的名字（可选）",
+  "guestbook.message": "留言",
+  "guestbook.messagePlaceholder": "写下你的留言...",
+  "guestbook.sign": "签名留言",
+
+  "btn.source": "源码",
+  "btn.demo": "演示",
+
+  "footer.motto": "这个世界很大，请坚定不移的爱着自己。",
+  "footer.rights": "版权所有。",
+
+  "language": "中文"
+}

@@ -1,0 +1,45 @@
+{
+  "nav.about": "About",
+  "nav.projects": "Projects",
+  "nav.wisdom": "Wisdom",
+  "nav.guestbook": "Guestbook",
+  "nav.contact": "Contact",
+
+  "hero.greeting": "Hi there, I'm",
+  "hero.scrollDown": "Scroll Down",
+  "hero.viewProjects": "View Projects",
+  "hero.aboutMe": "About Me",
+
+  "about.title": "About Me",
+  "about.skills": "Skills & Technologies",
+  "about.experience": "Experience & Education",
+
+  "projects.title": "Featured Projects",
+  "projects.subtitle": "Selected works that showcase my passion for building exceptional digital experiences.",
+  "projects.moreTitle": "More Projects",
+  "projects.moreSubtitle": "Additional works and experiments",
+
+  "wisdom.title": "Wisdom Universe",
+  "wisdom.subtitle": "Each star holds a piece of wisdom. Click to discover. Contribute your own.",
+  "wisdom.randomBtn": "Random Wisdom",
+  "wisdom.placeholder": "Share your wisdom...",
+  "wisdom.submit": "Submit",
+  "wisdom.added": "Added!",
+  "wisdom.close": "Close",
+
+  "guestbook.title": "Guestbook",
+  "guestbook.subtitle": "Leave a footprint. Share your thoughts, feedback, or just say hello.",
+  "guestbook.name": "Name",
+  "guestbook.namePlaceholder": "Your name (optional)",
+  "guestbook.message": "Message",
+  "guestbook.messagePlaceholder": "Write your message...",
+  "guestbook.sign": "Sign Guestbook",
+
+  "btn.source": "Source",
+  "btn.demo": "Demo",
+
+  "footer.motto": "Wide as the world may be, keep loving yourself with all your heart.",
+  "footer.rights": "All rights reserved.",
+
+  "language": "English"
+}

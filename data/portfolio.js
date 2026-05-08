@@ -4,7 +4,7 @@ const portfolioData = {
     title: 'Life infinite, coding eternal.',
     motto: 'Wide as the world may be, keep loving yourself with all your heart.',
     mottos: [
-      'Wide as the world may be, keep loving yourself with all your heart.',
+      'What do you want to be, It is what do you do, Not what you think.',
       'Design is intelligence made visible.',
       'Code is poetry written for both machines and humans.',
       'Simplicity is the ultimate sophistication in engineering.',
@@ -23,54 +23,41 @@ const portfolioData = {
   },
 
   skills: [
-    { name: 'React', level: 95 },
-    { name: 'TypeScript', level: 90 },
+    { name: 'C++', level: 95 },
+    { name: 'Python', level: 90 },
     { name: 'Vue.js', level: 85 },
-    { name: 'Node.js', level: 88 },
-    { name: 'Tailwind CSS', level: 92 },
-    { name: 'Three.js', level: 75 },
-    { name: 'Figma', level: 85 },
-    { name: 'Python', level: 78 },
-    { name: 'GraphQL', level: 80 },
-    { name: 'Docker', level: 72 },
-    { name: 'Next.js', level: 88 },
-    { name: 'GSAP', level: 82 }
+    { name: 'TypeScript', level: 88 },
+    { name: 'Go', level: 92 },
+    { name: 'Rust', level: 75 },
   ],
 
   timeline: [
     {
-      year: '2024 - Present',
-      title: 'Senior Frontend Engineer',
-      company: 'TechVision Labs',
-      description: 'Leading the design system team, building scalable component libraries used by 50+ engineers.',
-      type: 'work'
-    },
-    {
-      year: '2022 - 2024',
-      title: 'Full Stack Developer',
-      company: 'DataFlow Inc.',
-      description: 'Built real-time data visualization platforms serving 100K+ daily active users.',
-      type: 'work'
-    },
-    {
-      year: '2021 - 2022',
-      title: 'UI/UX Designer & Developer',
-      company: 'Creative Studio',
-      description: 'Designed and developed interactive web experiences for Fortune 500 clients.',
-      type: 'work'
-    },
-    {
-      year: '2020',
-      title: 'M.S. Computer Science',
-      company: 'Stanford University',
-      description: 'Specialized in Human-Computer Interaction and Visual Computing.',
+      year: '2026 - Present',
+      title: 'AI Research Learner',
+      company: 'Xinjiang University',
+      description: 'Specialized in Human-Computer Interaction and Visual Computing. Focused on Audio AI, speech enhancement, and high-fidelity audio reconstruction research.',
       type: 'education'
     },
     {
-      year: '2018',
-      title: 'B.S. Digital Media Art',
-      company: 'MIT Media Lab',
-      description: 'Cross-disciplinary studies in art, technology, and design thinking.',
+      year: '2025 - 2026',
+      title: 'Full Stack Developer',
+      company: 'Xinjiang University',
+      description: 'Participated in horizontal research projects under academic supervision, responsible for full-stack development and system implementation.',
+      type: 'work'
+    },
+    {
+      year: '2024 - 2025',
+      title: 'Undergraduate Student',
+      company: 'Xinjiang University',
+      description: 'Major in Software Engineering, with a focus on front-end and full-stack development.',
+      type: 'education'
+    },
+    {
+      year: '2022',
+      title: 'High School Graduate',
+      company: 'High School',
+      description: 'Self-taught C/C++ since 2018, began my journey in software development.',
       type: 'education'
     }
   ],
@@ -78,38 +65,34 @@ const portfolioData = {
   featuredProjects: [
     {
       id: 1,
-      name: 'Lumina Design System',
-      description: 'A comprehensive design system with 60+ accessible components, built with React and TypeScript. Features dark mode, responsive layouts, and interactive documentation.',
-      tags: ['React', 'TypeScript', 'Storybook', 'Design Systems'],
-      github: 'https://github.com',
-      demo: 'https://example.com',
+      name: 'Better Music',
+      description: 'A beautiful GUI-based local music player developed by Tauri using Vue 3, TypeScript and Rust.',
+      tags: ['Tauri', 'TypeScript', 'Rust'],
+      github: 'https://github.com/Romi-Brooks/bettermusic',
       featured: true
     },
     {
       id: 2,
-      name: 'VizFlow Analytics',
-      description: 'Real-time data visualization platform processing 1M+ events daily. Includes interactive dashboards, custom chart engine, and collaborative annotations.',
-      tags: ['D3.js', 'WebSocket', 'Node.js', 'PostgreSQL'],
-      github: 'https://github.com',
-      demo: 'https://example.com',
+      name: 'Homeless',
+      description: 'A cross-platform post-apocalyptic survival game developed in C++.',
+      tags: ['C++', 'Game Engine'],
+      github: 'https://github.com/Romi-Brooks/Homeless',
       featured: true
     },
     {
       id: 3,
-      name: 'EcoTrack',
-      description: 'A carbon footprint tracking app that gamifies sustainable living. Features social challenges, AI-powered suggestions, and blockchain-verified offsets.',
-      tags: ['Next.js', 'AI/ML', 'Blockchain', 'Mobile'],
-      github: 'https://github.com',
-      demo: 'https://example.com',
+      name: 'Beeplayer',
+      description: 'A lightweight and cross-platform music player based on miniaudio and C++.',
+      tags: ['C++', 'Music Player'],
+      github: 'https://github.com/Romi-Brooks/beeplayer',
       featured: true
     },
     {
       id: 4,
-      name: 'Neural Canvas',
-      description: 'Generative art platform that creates unique artworks using neural networks. Users can guide the AI with style references and watch the creation process.',
-      tags: ['TensorFlow.js', 'Canvas API', 'WebGL', 'Generative Art'],
-      github: 'https://github.com',
-      demo: 'https://example.com',
+      name: 'Go Stream',
+      description: 'A cross-platform WebUI music player with Go and TypeScript.',
+      tags: ['Go', 'TypeScript', 'Web App'],
+      github: 'https://github.com/Romi-Brooks/gostream',
       featured: true
     }
   ],
@@ -117,65 +100,39 @@ const portfolioData = {
   otherProjects: [
     {
       id: 5,
-      name: 'DevBook',
-      description: 'A social platform for developers to share knowledge, with real-time code collaboration and peer review features.',
-      tags: ['React', 'Firebase', 'CodeMirror'],
-      github: 'https://github.com'
+      name: 'Musicookie',
+      description: 'An open-source DAW with a built-in musicookie core engine for music production.',
+      tags: ['DAW', 'Audio Engine'],
+      github: 'https://github.com/Romi-Brooks/musicookie'
     },
     {
       id: 6,
-      name: 'WeatherViz',
-      description: 'Minimalist weather app with beautiful 3D particle visualizations representing current weather conditions.',
-      tags: ['Three.js', 'APIs', 'Geolocation'],
-      github: 'https://github.com'
+      name: 'Aurora',
+      description: 'An AI companion app with customizable personality and emotional interaction.',
+      tags: ['AI', 'Companion'],
+      github: 'https://github.com/Romi-Brooks/aurora'
     },
     {
       id: 7,
-      name: 'PulseFit',
-      description: 'A workout tracking PWA with motion-based exercise recognition and progress visualization.',
-      tags: ['PWA', 'TensorFlow', 'Chart.js'],
-      github: 'https://github.com'
-    },
-    {
-      id: 8,
-      name: 'MarkDown Wiki',
-      description: 'A lightweight wiki system that renders markdown files into a beautiful knowledge base with full-text search.',
-      tags: ['Vue.js', 'Markdown', 'PWA'],
-      github: 'https://github.com'
+      name: 'My Blog',
+      description: 'Personal blog sharing insights on development, audio, and AI research.',
+      tags: ['Blog', 'Website'],
+      github: 'https://github.com/Romi-Brooks/Romi-Brooks.github.io'
     }
   ],
 
-  wisdoms: [
-    'The best code is the code you never had to write.',
-    'Design is not just what it looks like — design is how it works.',
-    'Simplicity is the ultimate sophistication in engineering.',
-    'A bug is just a feature that hasn\'t found its purpose yet.',
-    'Great developers write code for humans first, computers second.',
-    'Creativity is intelligence having fun — let your code dance.',
-    'The only way to go fast is to go well: quality is velocity.',
-    'Every expert was once a beginner who never gave up.',
-    'Your most unhappy customers are your greatest source of learning.',
-    ' innovation distinguishes between a leader and a follower.',
-    'Code is like poetry — every line should have purpose and beauty.',
-    'The best interface is no interface — let things feel natural.',
-    'In the middle of difficulty lies opportunity — and great refactoring.',
-    'Good artists copy, great artists steal — and cite their sources.',
-    'Technology is best when it brings people together.'
-  ],
-
   socialLinks: [
-    { name: 'GitHub', icon: 'fab fa-github', url: 'https://github.com' },
-    { name: 'LinkedIn', icon: 'fab fa-linkedin-in', url: 'https://linkedin.com' },
-    { name: 'Twitter', icon: 'fab fa-x-twitter', url: 'https://twitter.com' },
-    { name: 'Dribbble', icon: 'fab fa-dribbble', url: 'https://dribbble.com' },
-    { name: 'Medium', icon: 'fab fa-medium-m', url: 'https://medium.com' }
+    { name: 'Website', icon: 'fas fa-globe', url: 'https://www.heyromi.icu/' },
+    { name: 'Blog', icon: 'fas fa-blog', url: 'https://blog.heyromi.icu' },
+    { name: 'X', icon: 'fab fa-x-twitter', url: 'https://x.com/RomiBrooks1' },
+    { name: 'Facebook', icon: 'fab fa-facebook', url: 'https://www.facebook.com/profile.php?id=100087271397689' }
   ],
 
   musicPlaylist: [
-    { title: 'Midnight Serenity', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
-    { title: 'Ocean Waves', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
-    { title: 'Starlight Journey', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' },
-    { title: 'Gentle Rain', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3' }
+    { title: '脏艺术家', neteaseId: '2084008711' },
+    { title: 'Hypertube', neteaseId: '2631210352' },
+    { title: '平行线', neteaseId: '1983761233' },
+    { title: 'off the hook', neteaseId: '28692785' }
   ],
 
   lastUpdated: '2026-05-08'

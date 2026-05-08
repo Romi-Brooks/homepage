@@ -2,13 +2,16 @@ class PortfolioApp {
   constructor() {
     this.loadingProgress = 0;
     this.initTheme();
-    this.initLoading();
-    this.initNavbar();
-    this.initScrollProgress();
-    this.initBackToTop();
-    this.initMouseGlow();
-    this.initScrollAnimations();
-    this.initBackground();
+    i18n.init().then(() => {
+      this.initLoading();
+      this.initNavbar();
+      this.initScrollProgress();
+      this.initBackToTop();
+      this.initMouseGlow();
+      this.initScrollAnimations();
+      this.initBackground();
+      this.initLangToggle();
+    });
   }
 
   initTheme() {
@@ -72,7 +75,7 @@ class PortfolioApp {
     const motto = document.getElementById('mottoText');
     const avatar = document.getElementById('aboutAvatar');
 
-    if (greeting) greeting.textContent = "Hi there, I'm";
+    if (greeting) greeting.textContent = i18n.t('hero.greeting');
     if (name) name.textContent = p.name;
     if (typewriter) typewriter.dataset.text = p.title;
     if (motto) motto.textContent = `"${p.mottos ? p.mottos[0] : p.motto}"`;
@@ -259,6 +262,29 @@ class PortfolioApp {
     });
   }
 
+  initLangToggle() {
+    const btn = document.getElementById('langToggle');
+    if (!btn) return;
+    btn.textContent = i18n.currentLang.toUpperCase();
+    i18n.onDataChange(() => {
+      this.initHeroContent();
+      this.initTypewriterEffect();
+      this.initMottoScroller();
+      this.initSkillTags();
+      this.initTimeline();
+      this.initProjects();
+      this.initFooter();
+      const randomBtn = document.querySelector('.btn-random-wisdom');
+      if (randomBtn) randomBtn.innerHTML = '<i class="fas fa-dice"></i> ' + i18n.t('wisdom.randomBtn');
+      const submitBtn = document.querySelector('.wisdom-submit-btn');
+      if (submitBtn) submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> ' + i18n.t('wisdom.submit');
+    });
+    btn.addEventListener('click', async () => {
+      await i18n.toggle();
+      btn.textContent = i18n.currentLang.toUpperCase();
+    });
+  }
+
   initScrollAnimations() {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -280,6 +306,7 @@ class PortfolioApp {
   initSkillTags() {
     const container = document.getElementById('skillTags');
     if (!container) return;
+    container.innerHTML = '';
 
     const colors = ['#165DFF', '#7C3AED', '#10B981', '#F59E0B', '#EF4444', '#06B6D4', '#8B5CF6', '#EC4899'];
     portfolioData.skills.forEach((skill, i) => {
@@ -304,6 +331,7 @@ class PortfolioApp {
   initTimeline() {
     const container = document.getElementById('timeline');
     if (!container) return;
+    container.innerHTML = '';
 
     portfolioData.timeline.forEach((item) => {
       const div = document.createElement('div');
@@ -321,6 +349,10 @@ class PortfolioApp {
   }
 
   initProjects() {
+    const featured = document.getElementById('featuredProjects');
+    const other = document.getElementById('otherProjects');
+    if (featured) featured.innerHTML = '';
+    if (other) other.innerHTML = '';
     this.renderProjects('featuredProjects', portfolioData.featuredProjects, true);
     this.renderProjects('otherProjects', portfolioData.otherProjects, false);
     this.initProjectCardListeners();
@@ -357,10 +389,10 @@ class PortfolioApp {
             <p class="text-sm mb-4" style="color: var(--text-secondary); line-height: 1.6">${project.description}</p>
             <div class="flex gap-3">
               <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="btn-outline text-sm py-2 px-4">
-                <i class="fab fa-github"></i> Source
+                <i class="fab fa-github"></i> ${i18n.t('btn.source')}
               </a>
               ${project.demo ? `<a href="${project.demo}" target="_blank" rel="noopener noreferrer" class="btn-primary text-sm py-2 px-4">
-                <i class="fas fa-external-link-alt"></i> Demo
+                <i class="fas fa-external-link-alt"></i> ${i18n.t('btn.demo')}
               </a>` : ''}
             </div>
           </div>
@@ -389,9 +421,20 @@ class PortfolioApp {
     const container = document.getElementById('wisdomUniverse');
     if (!container) return;
 
-    this.wisdomUniverse = new WisdomUniverse(container, portfolioData.wisdoms);
+    const wisdoms = [];
+    portfolioData.wisdoms = wisdoms;
+    this.wisdomUniverse = new WisdomUniverse(container, wisdoms);
+
+    fetch('data/wisdoms/wisdoms.json')
+      .then((res) => (res.ok ? res.json() : []))
+      .then((data) => {
+        wisdoms.length = 0;
+        wisdoms.push(...data);
+      })
+      .catch(() => {});
 
     const randomBtn = container.querySelector('.btn-random-wisdom');
+    if (randomBtn) randomBtn.innerHTML = '<i class="fas fa-dice"></i> ' + i18n.t('wisdom.randomBtn');
     randomBtn?.addEventListener('click', () => {
       randomBtn.classList.add('spinning');
       setTimeout(() => randomBtn.classList.remove('spinning'), 600);
@@ -400,14 +443,15 @@ class PortfolioApp {
 
     const input = container.querySelector('.wisdom-input');
     const submitBtn = container.querySelector('.wisdom-submit-btn');
+    if (submitBtn) submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> ' + i18n.t('wisdom.submit');
     submitBtn?.addEventListener('click', () => {
       const text = input.value.trim();
       if (text) {
-        portfolioData.wisdoms.push(text);
+        wisdoms.push(text);
         input.value = '';
-        submitBtn.innerHTML = '<i class="fas fa-check"></i> Added!';
+        submitBtn.innerHTML = '<i class="fas fa-check"></i> ' + i18n.t('wisdom.added');
         setTimeout(() => {
-          submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit';
+          submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> ' + i18n.t('wisdom.submit');
         }, 1500);
       }
     });
@@ -422,6 +466,7 @@ class PortfolioApp {
     const form = document.getElementById('guestbookForm');
     if (!container || !form) return;
 
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     const API = '/api/guestbook';
     const messages = [];
     let turnstileWidgetId = null;
@@ -445,6 +490,13 @@ class PortfolioApp {
     };
 
     const loadMessages = async () => {
+      if (isLocal) {
+        const local = JSON.parse(localStorage.getItem('guestbook') || '[]');
+        messages.length = 0;
+        messages.push(...local);
+        renderMessages();
+        return;
+      }
       try {
         const res = await fetch(API);
         if (res.ok) {
@@ -476,7 +528,7 @@ class PortfolioApp {
 
     loadMessages();
 
-    if (typeof turnstile !== 'undefined' && turnstileConfig.siteKey) {
+    if (!isLocal && typeof turnstile !== 'undefined' && turnstileConfig.siteKey) {
       const widgetEl = document.getElementById('turnstileWidget');
       if (widgetEl) {
         try {
@@ -548,6 +600,7 @@ class PortfolioApp {
     const socialContainer = document.getElementById('socialLinks');
     const updateEl = document.getElementById('lastUpdated');
     if (socialContainer) {
+      socialContainer.innerHTML = '';
       portfolioData.socialLinks.forEach((link) => {
         const a = document.createElement('a');
         a.href = link.url;
